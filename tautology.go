@@ -1,6 +1,6 @@
-package logic
+package logic_evaluator_go
 
-import "github.com/motoki317/logic-evaluator-go/logic/sentence"
+import "github.com/motoki317/logic-evaluator-go/sentence"
 
 /*
 Checks if this logic evaluates to true on any conditions of the variables.

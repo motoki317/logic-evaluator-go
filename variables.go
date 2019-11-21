@@ -1,7 +1,7 @@
-package logic
+package logic_evaluator_go
 
 import (
-	"github.com/motoki317/logic-evaluator-go/logic/base"
+	"github.com/motoki317/logic-evaluator-go/base"
 	"strconv"
 	"strings"
 )

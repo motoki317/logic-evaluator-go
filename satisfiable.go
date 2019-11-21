@@ -1,7 +1,7 @@
-package logic
+package logic_evaluator_go
 
 import (
-	"github.com/motoki317/logic-evaluator-go/logic/sentence"
+	"github.com/motoki317/logic-evaluator-go/sentence"
 )
 
 /*

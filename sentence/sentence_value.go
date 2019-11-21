@@ -1,6 +1,6 @@
 package sentence
 
-import "github.com/motoki317/logic-evaluator-go/logic/base"
+import "github.com/motoki317/logic-evaluator-go/base"
 
 type ValueSentence struct {
 	name  string

@@ -1,10 +1,10 @@
-package logic
+package logic_evaluator_go
 
 import (
 	"errors"
-	"github.com/motoki317/logic-evaluator-go/logic/base"
-	"github.com/motoki317/logic-evaluator-go/logic/operator"
-	"github.com/motoki317/logic-evaluator-go/logic/sentence"
+	"github.com/motoki317/logic-evaluator-go/base"
+	"github.com/motoki317/logic-evaluator-go/operator"
+	"github.com/motoki317/logic-evaluator-go/sentence"
 	"regexp"
 )
 

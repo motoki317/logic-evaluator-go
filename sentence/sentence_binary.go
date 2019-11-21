@@ -1,7 +1,7 @@
 package sentence
 
 import (
-	"github.com/motoki317/logic-evaluator-go/logic/operator"
+	"github.com/motoki317/logic-evaluator-go/operator"
 )
 
 type BinarySentence struct {

@@ -1,8 +1,8 @@
-package logic
+package logic_evaluator_go
 
 import (
 	"errors"
-	"github.com/motoki317/logic-evaluator-go/logic/operator"
+	"github.com/motoki317/logic-evaluator-go/operator"
 	"strings"
 )
 
