@@ -29,7 +29,7 @@ func ReverseOrderedOperators() []Operator {
 func (op Operator) ReplaceableTexts() ([]string, error) {
 	switch op {
 	case Not:
-		return []string{"~", "not"}, nil
+		return []string{"~", "!", "not"}, nil
 	case And:
 		return []string{"/\\", "&", "and"}, nil
 	case Or:

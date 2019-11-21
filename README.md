@@ -39,7 +39,7 @@ func main() {
 
 ### Allowed Operators
 You can use these operators to construct a sentence. Other characters are not supported and will be considered variables.
-- NOT `¬`, `~`, `not`
+- NOT `¬`, `~`, `!`, `not`
 - AND `∧`, `/\`, `&`, `and`
 - OR `∨`, `\/`, `|`, `or`
 - IMPLY `⇒`, `→`, `->`, `=>`
