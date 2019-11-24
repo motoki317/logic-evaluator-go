@@ -35,9 +35,9 @@ func (op Operator) ReplaceableTexts() ([]string, error) {
 	case Or:
 		return []string{"\\/", "|", "or"}, nil
 	case Imply:
-		return []string{"→", "->", "=>"}, nil
+		return []string{"→", "->", "=>", "imply", "implies"}, nil
 	case Equiv:
-		return []string{"↔", "<->", "<=>", "="}, nil
+		return []string{"↔", "<->", "<=>", "=", "equal", "equals", "is"}, nil
 	}
 	return []string{}, errors.New("unknown operator: " + string(op))
 }

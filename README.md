@@ -9,8 +9,8 @@ These strings are considered as operators.
 - NOT `¬`, `~`, `!`, `not`
 - AND `∧`, `/\ `, `&`, `and`
 - OR `∨`, `\/`, `|`, `or`
-- IMPLY `⇒`, `→`, `->`, `=>`
-- EQUIVALENT `⇔`, `↔`, `<->`, `<=>`
+- IMPLY `⇒`, `→`, `->`, `=>`, `imply`, `implies`
+- EQUIVALENCE `⇔`, `↔`, `<->`, `<=>`, `equal`, `equals`, `is`
 
 ### Constants
 These strings are considered as constants.
