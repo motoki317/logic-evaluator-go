@@ -1,9 +1,28 @@
 # logic-evaluator-go
-Simple logic evaluator in Go
-Evaluates the given logic in string, and checks if the logic is satisfiable and if the logic is a tautology.
-No algorithm for SAT solving used, this program directly checks all 2^n patterns (n: number of variables).
+This simple logic evaluator evaluates the given logic in string, and checks if the logic is satisfiable and if the logic is a tautology.
+No advanced algorithms used, this program directly checks all 2^n patterns (n: number of variables).
 
-## Example Usage
+## Usage
+
+### Operators
+These strings are considered as operators.
+- NOT `¬`, `~`, `!`, `not`
+- AND `∧`, `/\ `, `&`, `and`
+- OR `∨`, `\/`, `|`, `or`
+- IMPLY `⇒`, `→`, `->`, `=>`
+- EQUIVALENT `⇔`, `↔`, `<->`, `<=>`
+
+### Constants
+These strings are considered as constants.
+- TRUE `true`, `1`
+- FALSE `false`, `0`
+
+### Variables
+Any string other than above is regarded as a variable.
+
+## Examples
+
+### Code
 ```go
 package main
 
@@ -37,20 +56,13 @@ func main() {
 }
 ```
 
-### Allowed Operators
-You can use these operators to construct a sentence. Other characters are not supported and will be considered variables.
-- NOT `¬`, `~`, `!`, `not`
-- AND `∧`, `/\`, `&`, `and`
-- OR `∨`, `\/`, `|`, `or`
-- IMPLY `⇒`, `→`, `->`, `=>`
-- EQUIVALENT `⇔`, `↔`, `<->`, `<=>`
-
 ### Example Inputs
 - `α⇒¬¬α`
 - `((p⇒q)∧(q⇒r)∧(r⇒p))⇔((p⇔q)∧(q⇔r))`
 - `((α⇒β)∧α)⇒β`
 - `(¬α∧¬β∧¬γ)∨(α∧¬β∧γ)∨(α∧β∧γ)`
 - `(P -> Q) -> (~Q -> ~P)`
+- `true AND α -> α`
 
 ### Example Output
 ```

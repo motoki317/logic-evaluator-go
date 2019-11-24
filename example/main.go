@@ -9,11 +9,12 @@ Some example inputs:
 (¬α∧¬β∧¬γ)∨(α∧¬β∧γ)∨(α∧β∧γ)
 */
 
-package logic_evaluator_go
+package main
 
 import (
 	"bufio"
 	"fmt"
+	"github.com/motoki317/logic-evaluator-go"
 	"os"
 	"strings"
 )
@@ -29,7 +30,7 @@ func main() {
 
 	text = strings.ReplaceAll(text, "\n", "")
 
-	interpreter, err := NewInterpreter(text)
+	interpreter, err := logic_evaluator_go.NewInterpreter(text)
 	if err != nil {
 		panic(err)
 	}

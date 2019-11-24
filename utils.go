@@ -2,7 +2,10 @@ package logic_evaluator_go
 
 import (
 	"errors"
+	"github.com/motoki317/logic-evaluator-go/base"
+	"github.com/motoki317/logic-evaluator-go/consts"
 	"github.com/motoki317/logic-evaluator-go/operator"
+	"regexp"
 	"strings"
 )
 
@@ -31,6 +34,15 @@ func isVariableName(text string) bool {
 	return true
 }
 
+func isConstantChar(char rune) bool {
+	for _, c := range consts.Constants() {
+		if char == rune(c) {
+			return true
+		}
+	}
+	return false
+}
+
 func getOperator(ch rune) (operator.Operator, error) {
 	for _, op := range operator.OrderedOperators() {
 		if ch == rune(op) {
@@ -41,13 +53,25 @@ func getOperator(ch rune) (operator.Operator, error) {
 }
 
 func replaceTexts(text string) (string, error) {
-	for _, v := range operator.ReverseOrderedOperators() {
-		texts, err := v.ReplaceableTexts()
+	text = strings.ToLower(text)
+
+	for _, op := range operator.ReverseOrderedOperators() {
+		texts, err := op.ReplaceableTexts()
 		if err != nil {
 			return "", err
 		}
 		for _, replaceable := range texts {
-			text = strings.ReplaceAll(text, replaceable, string(v))
+			text = strings.ReplaceAll(text, replaceable, string(op))
+		}
+	}
+
+	for _, constant := range consts.Constants() {
+		texts, err := constant.ReplaceableTexts()
+		if err != nil {
+			return "", err
+		}
+		for _, replaceable := range texts {
+			text = strings.ReplaceAll(text, replaceable, string(constant))
 		}
 	}
 
@@ -68,6 +92,26 @@ func hasValidParentheses(text string) bool {
 		}
 	}
 	return openings == closings
+}
+
+func getVariables(text string) map[string]*base.Bool {
+	nonVariableChars := "\\(\\)"
+	for _, op := range operator.OrderedOperators() {
+		nonVariableChars += string(op)
+	}
+	for _, c := range consts.Constants() {
+		nonVariableChars += string(c)
+	}
+
+	r := regexp.MustCompile("([^" + nonVariableChars + "]+)")
+	vars := r.FindAllString(text, -1)
+
+	variablesMap := make(map[string]*base.Bool)
+	for _, v := range vars {
+		variablesMap[v] = &base.Bool{}
+	}
+
+	return variablesMap
 }
 
 /*

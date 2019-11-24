@@ -3,9 +3,9 @@ package logic_evaluator_go
 import (
 	"errors"
 	"github.com/motoki317/logic-evaluator-go/base"
+	"github.com/motoki317/logic-evaluator-go/consts"
 	"github.com/motoki317/logic-evaluator-go/operator"
 	"github.com/motoki317/logic-evaluator-go/sentence"
-	"regexp"
 )
 
 type Interpreter struct {
@@ -50,32 +50,21 @@ func NewInterpreter(text string) (*Interpreter, error) {
 	return interpreter, nil
 }
 
-func getVariables(text string) map[string]*base.Bool {
-	nonVariableChars := "\\(\\)"
-	for _, v := range operator.OrderedOperators() {
-		nonVariableChars += string(v)
-	}
-
-	r := regexp.MustCompile("([^" + nonVariableChars + "]+)")
-	vars := r.FindAllString(text, -1)
-
-	variablesMap := make(map[string]*base.Bool)
-	for _, v := range vars {
-		variablesMap[v] = &base.Bool{}
-	}
-
-	return variablesMap
-}
-
 func interpretSentence(input string, variables *map[string]*base.Bool) (*sentence.Sentence, error) {
-	// Check if given input is variable
+	chars := []rune(input)
+
+	// Check if given input is a constant or variable
+	if len(chars) == 1 && isConstantChar(chars[0]) {
+		s := sentence.NewConstantSentence(consts.Constant(chars[0]))
+		return &s, nil
+	}
+
 	if isVariableName(input) {
 		s := sentence.NewValueSentence(input, (*variables)[input])
 		return &s, nil
 	}
 
 	// Check if given input is closed with parentheses
-	chars := []rune(input)
 	if chars[0] == '(' && chars[len(chars)-1] == ')' && getClosingParenthesisIndex(input, 0) == len(chars)-1 {
 		return interpretSentence(string(chars[1:len(chars)-1]), variables)
 	}
