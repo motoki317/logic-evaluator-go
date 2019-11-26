@@ -1,5 +1,5 @@
 # logic-evaluator-go
-This simple logic evaluator evaluates the given logic in string, and checks if the logic is satisfiable and if the logic is a tautology.
+This simple logic evaluator evaluates a propositional formula, and checks if the logic is satisfiable and if the logic is a tautology.
 No advanced algorithms used, this program directly checks all 2^n patterns (n: number of variables).
 
 ## Usage

@@ -37,7 +37,7 @@ func (op Operator) ReplaceableTexts() ([]string, error) {
 	case Imply:
 		return []string{"→", "->", "=>", "imply", "implies"}, nil
 	case Equiv:
-		return []string{"↔", "<->", "<=>", "=", "equal", "equals", "is"}, nil
+		return []string{"↔", "<->", "<=>", "=", "equals", "equal", "is"}, nil
 	}
 	return []string{}, errors.New("unknown operator: " + string(op))
 }
