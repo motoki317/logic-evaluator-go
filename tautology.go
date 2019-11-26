@@ -5,26 +5,26 @@ import "github.com/motoki317/logic-evaluator-go/sentence"
 /*
 Checks if this logic evaluates to true on any conditions of the variables.
 Runs through all 2^n (n: number of variables) combinations and directly checks them.
-If this is NOT a tautology, then returns a counter example.
-If this is a tautology, returns null.
+If this is NOT a tautology, then returns false and a counter example.
+If this is a tautology, returns true.
 */
-func (i *Interpreter) CheckTautology() (Variables, error) {
+func (i *Interpreter) IsTautology() (res bool, counterExample Variables, err error) {
 	// Ordered variables
 	variables := i.makeOrderedVariables()
-	result, err := isTautology(i.sentence, variables, 0)
+	res, err = isTautology(i.sentence, variables, 0)
 	if err != nil {
-		return nil, err
+		return
 	}
 
-	if !result {
+	if !res {
 		// Replicate the result
-		ret := make(map[string]bool)
+		counterExample = make(map[string]bool)
 		for _, v := range variables {
-			ret[v.name] = v.value.Get()
+			counterExample[v.name] = v.value.Get()
 		}
-		return ret, nil
+		return
 	}
-	return nil, nil
+	return
 }
 
 /*

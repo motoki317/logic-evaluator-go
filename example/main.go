@@ -42,12 +42,12 @@ func main() {
 
 	fmt.Println("-----")
 
-	solution, err := interpreter.CheckSatisfiable()
+	isSatisfiable, solution, err := interpreter.IsSatisfiable()
 	if err != nil {
 		panic(err)
 	}
 
-	if solution != nil {
+	if isSatisfiable {
 		fmt.Println("This logic is satisfiable.")
 		fmt.Println("Possible solution: " + solution.String())
 	} else {
@@ -56,12 +56,12 @@ func main() {
 
 	fmt.Println("-----")
 
-	counterExample, err := interpreter.CheckTautology()
+	isTautology, counterExample, err := interpreter.IsTautology()
 	if err != nil {
 		panic(err)
 	}
 
-	if counterExample == nil {
+	if isTautology {
 		fmt.Println("This logic is a tautology.")
 	} else {
 		fmt.Println("This logic is NOT a tautology.")

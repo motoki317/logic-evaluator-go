@@ -36,18 +36,18 @@ func main() {
 
 	interpreter, _ := logic.NewInterpreter(text)
 
-	solution, _ := interpreter.CheckSatisfiable()
+	isSatisfiable, solution, _ := interpreter.IsSatisfiable()
 
-	if solution != nil {
+	if isSatisfiable {
 		fmt.Println("This logic is satisfiable.")
 		fmt.Println("Possible solution: " + solution.String())
 	} else {
 		fmt.Println("This logic is NOT satisfiable.")
 	}
 
-	counterExample, _ := interpreter.CheckTautology()
+	isTautology, counterExample, _ := interpreter.IsTautology()
 
-	if counterExample == nil {
+	if isTautology {
 		fmt.Println("This logic is a tautology.")
 	} else {
 		fmt.Println("This logic is NOT a tautology.")
