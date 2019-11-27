@@ -22,10 +22,6 @@ func (i *Interpreter) EvaluatedText() string {
 	return (*i.sentence).String()
 }
 
-func (i *Interpreter) Value() (bool, error) {
-	return (*i.sentence).Value()
-}
-
 func NewInterpreter(text string) (*Interpreter, error) {
 	if !hasValidParentheses(text) {
 		return nil, errors.New("number of opening/closing parentheses do not match")
